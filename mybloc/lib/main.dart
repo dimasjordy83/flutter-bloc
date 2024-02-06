@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mybloc/bloc/auth_bloc.dart';
+import 'package:mybloc/bloc/my_bloc_observer.dart';
 import 'package:mybloc/materi/bloc.dart';
 import 'package:mybloc/materi/provider.dart';
 import 'package:mybloc/materi/statefull.dart';
+import 'package:mybloc/todo/pages/login_page.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'cubit/cubit.dart';
@@ -9,6 +12,7 @@ import 'package:mybloc/todo/pages/page_todo.dart';
 import 'package:mybloc/todo/cubit/todo_cubit.dart';
 
 void main() {
+  Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }
 
@@ -80,11 +84,23 @@ class _MyHomePageState extends State<MyHomePage> {
     //   ),
     //   home: const TodoPage(),
 
+    // return BlocProvider(
+    //   create: (context) => TodoCubit(),
+    //   child: MaterialApp(
+    //     home: const TodoPage(),
+    //   ),
+    // );
+
     return BlocProvider(
-      create: (context) => TodoCubit(),
-      child: MaterialApp(
-        home: const TodoPage(),
-      ),
-    );
+        create: (context) => AuthBloc(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Bloc Login Demo',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          home: const LoginPage(),
+        ));
   }
 }
