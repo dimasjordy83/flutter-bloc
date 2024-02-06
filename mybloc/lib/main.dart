@@ -5,6 +5,8 @@ import 'package:mybloc/materi/statefull.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'cubit/cubit.dart';
+import 'package:mybloc/todo/pages/page_todo.dart';
+import 'package:mybloc/todo/cubit/todo_cubit.dart';
 
 void main() {
   runApp(const MyApp());
@@ -66,6 +68,23 @@ class _MyHomePageState extends State<MyHomePage> {
     //     ),
     //   ),
     // );
-    return MyCubit(title: 'cubit');
+    // return MyCubit(title: 'cubit');
+
+    // test todo
+
+    // return MaterialApp(
+    //   title: 'Flutter Demo',
+    //   theme: ThemeData(
+    //     colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    //     useMaterial3: true,
+    //   ),
+    //   home: const TodoPage(),
+
+    return BlocProvider(
+      create: (context) => TodoCubit(),
+      child: MaterialApp(
+        home: const TodoPage(),
+      ),
+    );
   }
 }
